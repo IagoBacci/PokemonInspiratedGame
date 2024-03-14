@@ -13,7 +13,7 @@ let emby
 let renderedSprites
 let battleAnimationId
 let queue
-
+//função para iniciar a batalha
 function initBattle() {
     document.querySelector('#userInterface').style.display = 'block'
     document.querySelector('#text').style.display = 'none'
@@ -22,7 +22,7 @@ function initBattle() {
     document.querySelector('#attackBox').replaceChildren()
     
     draggle = new Monster(monsters.Minhoco)
-    draggle.position.y += 20
+    draggle.position.y = 100
     emby = new Monster(monsters.Foguinho)
     renderedSprites = [draggle, emby]
     queue = []
@@ -63,7 +63,7 @@ function initBattle() {
                 })
             })
         }
-
+        //definindo a escolha de ataques aleatoria do inimigo
         const randomAttack = 
             draggle.attacks[Math.floor(Math.random() * draggle.attacks.length)]
 
@@ -105,6 +105,7 @@ function initBattle() {
 })
 }
 
+//função para inserir na tela os sprites e o mapa de batalha
 function animateBattle() {
     battleAnimationId = window.requestAnimationFrame(animateBattle)
     battleBackground.draw()

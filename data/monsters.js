@@ -1,3 +1,6 @@
+
+
+
 const embyImage = new Image()
 embyImage.src = '../img/embySprite.png'
 const draggleImage = new Image()
@@ -23,7 +26,7 @@ const monsters = {
         Minhoco: {
             position: {
                 x: 800 ,
-                y: 80
+                y: 100
             },
             image: {
                 src: './img/draggleSprite.png'

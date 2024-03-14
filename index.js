@@ -8,11 +8,12 @@ const c = canvas.getContext('2d')
 canvas.width = 1024
 canvas.height = 576
 
+//definindo o que serão as colisões dentro do jogo e suas zonas
 const collisionsMap = []
 for (let i = 0; i < collisions.length; i+=70){
     collisionsMap.push(collisions.slice(i, 70 + i)
     )}
-
+//definindo as zonas de batalha do mapa (onde encontraram batalha)
     const battleZonesMap = []
 for (let i = 0; i < battleZonesData.length; i+=70){
     battleZonesMap.push(battleZonesData.slice(i, 70 + i)
@@ -163,7 +164,7 @@ function animate() {
     player.animate = false
 
     if (battle.initiated) return
-    //Ativar a batalha
+    //Ativar a batalha de forma aleatoria e apenas se dentro da zona de batalha
     if (keys.w.pressed || keys.a.pressed || keys.d.pressed || keys.s.pressed) {
         for (let i = 0; i < battleZones.length; i++) {
             const battleZone = battleZones[i]
@@ -185,7 +186,7 @@ function animate() {
                 overllapingArea > (player.width * player.height) / 2
                 && Math.random() < 0.05
             ) {
-                //deactivate animation loop
+                //desativar loop de animação
                 window.cancelAnimationFrame(animationId)
 
                 audio.Map.stop()
@@ -202,7 +203,7 @@ function animate() {
                             opacity: 1,
                             duration: 0.4,
                             onComplete() {
-                                //activate animation loop
+                                //ativar loop de animação
                                 initBattle()
                                 animateBattle()
                                 gsap.to('#overlappingDiv', {
